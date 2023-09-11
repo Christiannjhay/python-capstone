@@ -1,0 +1,34 @@
+def categorize_combined(polarity, subjectivity, toxicity_score, compound, neg, ):
+    # Define category scores (adjust weights as needed)
+    polarity_score = 0.4 * polarity  # Weighted polarity score
+    subjectivity_score = 0.2 * subjectivity  # Weighted subjectivity score
+    toxicity_score_score = 0.2 * toxicity_score  # Weighted toxicity score
+    compound_score = 0.1 * compound  # Weighted VADER compound score
+    neg_score = 0.1 * neg  # Weighted VADER neg score
+
+    # Calculate total scores for each category
+    positive_score = polarity_score
+    negative_score = -polarity_score
+    severe_toxicity_score = toxicity_score_score
+    insult_score = toxicity_score_score
+    profanity_score = toxicity_score_score
+    identity_attack_score = toxicity_score_score
+    threat_score = toxicity_score_score
+    sexually_explicit_score = toxicity_score_score
+
+    # Combine scores for each category
+    combined_scores = {
+        "Positive": positive_score,
+        "Negative": negative_score,
+        "Severe Toxicity": severe_toxicity_score,
+        "Insult": insult_score,
+        "Profanity": profanity_score,
+        "Identity Attack": identity_attack_score,
+        "Threat": threat_score,
+        "Sexually Explicit": sexually_explicit_score,
+    }
+
+    # Determine the final category based on the highest score
+    final_category = max(combined_scores, key=combined_scores.get)
+
+    return final_category
