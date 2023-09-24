@@ -7,7 +7,7 @@ from flask import Flask, request, jsonify
 import nltk
 from flask import Flask, request, jsonify
 from flask_cors import CORS  # Import the CORS module
-
+import os
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -15,8 +15,10 @@ CORS(app)  # Enable CORS for your Flask app
 
 nltk.download('vader_lexicon')
 
+print("Current working directory:", os.getcwd())
+
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate("C:/Users/sugar/Desktop/python-capstone/firebase_credentials.json")
+cred = credentials.Certificate("/firebase_credentials.json")
 firebase_admin.initialize_app(cred)
 
 # Define Perspective API endpoint
