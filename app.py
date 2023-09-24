@@ -18,7 +18,7 @@ nltk.download('vader_lexicon')
 print("Current working directory:", os.getcwd())
 
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate("C:\\Users\\sugar\\Desktop\\python-capstone\\firebase_credentials.json")
+cred = credentials.Certificate("firebase_credentials.json")
 firebase_admin.initialize_app(cred)
 
 # Define Perspective API endpoint
