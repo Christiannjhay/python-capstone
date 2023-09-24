@@ -15,7 +15,7 @@ CORS(app)  # Enable CORS for your Flask app
 nltk.download('vader_lexicon')
 
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate("C:\Users\sugar\Desktop\python-capstone\firebase_credentials.json")
+cred = credentials.Certificate("C:\\Users\\sugar\\Desktop\\python-capstone\\firebase_credentials.json")
 firebase_admin.initialize_app(cred)
 
 # Define Perspective API endpoint
