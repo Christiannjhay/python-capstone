@@ -6,7 +6,7 @@ import textblob
 from flask import Flask, request, jsonify
 import nltk
 from flask import Flask, request, jsonify
-from flask_cors import CORS  # Import the CORS module
+from flask_cors import CORS
 import os
 
 # Initialize Flask app
@@ -25,17 +25,17 @@ firebase_admin.initialize_app(cred)
 PERSPECTIVE_API_URL = "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze"
 
 # Define the categorize_combined function
-def categorize_combined(polarity, subjectivity, toxicity_score, compound, neg):
+def categorize_combined(polarity, subjectivity, toxicity_score, compound, neg): #from the firestore items
     # Define category scores (adjust weights as needed)
-    polarity_score = 0.1 * polarity  # Weighted polarity score
-    subjectivity_score = 0.2 * subjectivity  # Weighted subjectivity score
-    toxicity_score_score = 0.3 * toxicity_score  # Weighted toxicity score
-    compound_score = 0.1 * compound  # Weighted VADER compound score
-    neg_score = 0.3 * neg  # Weighted VADER neg score
+    polarity_score = 0.1 * polarity 
+    subjectivity_score = 0.2 * subjectivity  
+    toxicity_score_score = 0.3 * toxicity_score  
+    compound_score = 0.1 * compound 
+    neg_score = 0.3 * neg 
 
     # Calculate total scores for each category
-    positive_score = polarity_score
-    negative_score = -polarity_score
+    positive_score = polarity_score + (0.1 * compound_score)
+    negative_score = -polarity_score - (0.3 * neg_score)
     severe_toxicity_score = 0.5 * toxicity_score_score 
     insult_score = toxicity_score_score
     profanity_score = toxicity_score_score
