@@ -36,7 +36,7 @@ def categorize_combined(polarity, subjectivity, toxicity_score, compound, neg): 
     # Calculate total scores for each category
     positive_score = polarity_score + (0.1 * compound_score)
     negative_score = -polarity_score - (0.3 * neg_score)
-    severe_toxicity_score = 0.3 * toxicity_score_score 
+    severe_toxicity_score = 0.5 * toxicity_score_score 
     insult_score = toxicity_score_score
     profanity_score = toxicity_score_score
     identity_attack_score = toxicity_score_score
