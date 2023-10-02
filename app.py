@@ -27,36 +27,39 @@ PERSPECTIVE_API_URL = "https://commentanalyzer.googleapis.com/v1alpha1/comments:
 # Define the categorize_combined function
 def categorize_combined(polarity, subjectivity, toxicity_score, compound, neg):
     # Define category scores (adjust weights as needed)
-    polarity_score = 0.1 * polarity 
+    polarity_score = 0.2 * polarity  # Increased weight for polarity
     subjectivity_score = 0.2 * subjectivity  
-    toxicity_score_score = 0.3 * toxicity_score  
-    compound_score = 0.1 * compound 
-    neg_score = 0.3 * neg 
+    toxicity_score_score = 0.2 * toxicity_score  # Decreased weight for toxicity
+    compound_score = 0.2 * compound  # Increased weight for compound
+    neg_score = 0.2 * neg  # Increased weight for negation
 
     # Calculate total scores for each category
     positive_score = polarity_score + (0.1 * compound_score)
     negative_score = -polarity_score - (0.3 * neg_score)
     severe_toxicity_score = 0.5 * toxicity_score_score 
-    insult_score = 0.2 * toxicity_score_score  # Adjust the weight for insult
-    profanity_score = 0.2 * toxicity_score_score  # Adjust the weight for profanity
-    identity_attack_score = 0.2 * toxicity_score_score  # Adjust the weight for identity attack
-    threat_score = 0.2 * toxicity_score_score  # Adjust the weight for threat
-    sexually_explicit_score = 0.2 * toxicity_score_score  # Adjust the weight for sexually explicit
+    insult_score = 0.2 * toxicity_score_score  
+    profanity_score = 0.2 * toxicity_score_score  
+    identity_attack_score = 0.2 * toxicity_score_score  
+    threat_score = 0.2 * toxicity_score_score  
+    sexually_explicit_score = 0.2 * toxicity_score_score  
 
-    # Combine scores for each category
-    combined_scores = {
-        "Positive": positive_score,
-        "Negative": negative_score,
-        "Severe Toxicity": severe_toxicity_score,
-        "Insult": insult_score,
-        "Profanity": profanity_score,
-        "Identity Attack": identity_attack_score,
-        "Threat": threat_score,
-        "Sexually Explicit": sexually_explicit_score,
-    }
+    # Introduce a threshold for positive categorization
+    positive_threshold = 0.2  # Adjust this threshold as needed
 
-    # Determine the final category based on the highest score
-    final_category = max(combined_scores, key=combined_scores.get)
+    # Determine the final category based on scores and threshold
+    if positive_score >= positive_threshold:
+        final_category = "Positive"
+    else:
+        combined_scores = {
+            "Negative": negative_score,
+            "Severe Toxicity": severe_toxicity_score,
+            "Insult": insult_score,
+            "Profanity": profanity_score,
+            "Identity Attack": identity_attack_score,
+            "Threat": threat_score,
+            "Sexually Explicit": sexually_explicit_score,
+        }
+        final_category = max(combined_scores, key=combined_scores.get)
 
     return final_category
 
