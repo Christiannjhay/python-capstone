@@ -24,14 +24,17 @@ firebase_admin.initialize_app(cred)
 # Define Perspective API endpoint
 PERSPECTIVE_API_URL = "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze"
 
+# Define Perspective API endpoint
+PERSPECTIVE_API_URL = "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze"
+
 # Define the categorize_combined function
 def categorize_combined(polarity, subjectivity, toxicity_score, compound, neg):
     # Define category scores (adjust weights as needed)
-    polarity_score = 0.2 * polarity  # Increased weight for polarity
+    polarity_score = 0.3 * polarity  # Increased weight for polarity
     subjectivity_score = 0.2 * subjectivity  
     toxicity_score_score = 0.2 * toxicity_score  # Decreased weight for toxicity
     compound_score = 0.2 * compound  # Increased weight for compound
-    neg_score = 0.2 * neg  # Increased weight for negation
+    neg_score = 0.1 * neg  # Decreased weight for negation
 
     # Calculate total scores for each category
     positive_score = polarity_score + (0.1 * compound_score)
@@ -43,15 +46,17 @@ def categorize_combined(polarity, subjectivity, toxicity_score, compound, neg):
     threat_score = 0.2 * toxicity_score_score  
     sexually_explicit_score = 0.2 * toxicity_score_score  
 
-    # Introduce a threshold for positive categorization
-    positive_threshold = 0.5  # Adjust this threshold as needed
+    # Introduce a threshold for both positive and negative categorization
+    positive_threshold = 0.2  # Adjust this threshold as needed
+    negative_threshold = 0.2  # Adjust this threshold as needed
 
-    # Determine the final category based on scores and threshold
+    # Determine the final category based on scores and thresholds
     if positive_score >= positive_threshold:
         final_category = "Positive"
+    elif negative_score >= negative_threshold:
+        final_category = "Negative"
     else:
         combined_scores = {
-            "Negative": negative_score,
             "Severe Toxicity": severe_toxicity_score,
             "Insult": insult_score,
             "Profanity": profanity_score,
