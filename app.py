@@ -27,46 +27,44 @@ PERSPECTIVE_API_URL = "https://commentanalyzer.googleapis.com/v1alpha1/comments:
 # Define Perspective API endpoint
 PERSPECTIVE_API_URL = "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze"
 
+# Sample data
+polarity = 0.5  # Replace with the actual polarity value
+subjectivity = 0.3  # Replace with the actual subjectivity value
+toxicity_score = 0.3  # Replace with the actual toxicity_score value
+compound = 0.2  # Replace with the actual compound value
+neg = 0.1  # Replace with the actual negation value
+
 # Define the categorize_combined function
 def categorize_combined(polarity, subjectivity, toxicity_score, compound, neg):
-    # Define category scores (adjust weights as needed)
-    polarity_score = 0.3 * polarity  # Increased weight for polarity
-    subjectivity_score = 0.2 * subjectivity  
-    toxicity_score_score = 0.2 * toxicity_score  # Decreased weight for toxicity
-    compound_score = 0.2 * compound  # Increased weight for compound
-    neg_score = 0.1 * neg  # Decreased weight for negation
-
-    # Calculate total scores for each category
-    positive_score = polarity_score + (0.1 * compound_score)
-    negative_score = -polarity_score - (0.3 * neg_score)
-    severe_toxicity_score = 0.5 * toxicity_score_score 
-    insult_score = 0.2 * toxicity_score_score  
-    profanity_score = 0.2 * toxicity_score_score  
-    identity_attack_score = 0.2 * toxicity_score_score  
-    threat_score = 0.2 * toxicity_score_score  
-    sexually_explicit_score = 0.2 * toxicity_score_score  
-
-    # Introduce a threshold for both positive and negative categorization
-    positive_threshold = 0.2  # Adjust this threshold as needed
-    negative_threshold = 0.2  # Adjust this threshold as needed
+    # Define a threshold for categorization
+    threshold = 0.2  # Adjust this threshold as needed
 
     # Determine the final category based on scores and thresholds
-    if positive_score >= positive_threshold:
+    if polarity >= threshold and toxicity_score < threshold:
         final_category = "Positive"
-    elif negative_score >= negative_threshold:
+    elif polarity < -threshold and toxicity_score < threshold:
         final_category = "Negative"
     else:
-        combined_scores = {
-            "Severe Toxicity": severe_toxicity_score,
-            "Insult": insult_score,
-            "Profanity": profanity_score,
-            "Identity Attack": identity_attack_score,
-            "Threat": threat_score,
-            "Sexually Explicit": sexually_explicit_score,
-        }
-        final_category = max(combined_scores, key=combined_scores.get)
+        # Check for other categories based on toxicity_score
+        if toxicity_score >= threshold:
+            if toxicity_score >= 0.6:
+                final_category = "Severe Toxicity"
+            elif toxicity_score >= 0.4:
+                final_category = "Threat"
+            elif toxicity_score >= 0.3:
+                final_category = "Profanity"
+            elif toxicity_score >= 0.2:
+                final_category = "Sexually Explicit"
+            else:
+                final_category = "Insult"
+        else:
+            final_category = "Neutral"
 
     return final_category
+
+# Categorize the sample data
+category = categorize_combined(polarity, subjectivity, toxicity_score, compound, neg)
+print(f"Category: {category}")
 
 
 
