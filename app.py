@@ -44,7 +44,7 @@ def categorize_combined(polarity, subjectivity, toxicity_score, compound, neg):
     sexually_explicit_score = 0.2 * toxicity_score_score  
 
     # Introduce a threshold for positive categorization
-    positive_threshold = 0.2  # Adjust this threshold as needed
+    positive_threshold = 0.5  # Adjust this threshold as needed
 
     # Determine the final category based on scores and threshold
     if positive_score >= positive_threshold:
