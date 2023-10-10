@@ -87,7 +87,7 @@ def analyze_sentiment_and_store():
                 "PROFANITY": {},
                 "LIKELY_TO_REJECT": {},
                 "THREAT": {},
-                "IDENTITY_ATTACK": {}
+               
             }
         }
 
@@ -101,7 +101,7 @@ def analyze_sentiment_and_store():
             sexually_explicit_score = response.json()["attributeScores"]["SEXUALLY_EXPLICIT"]["summaryScore"]["value"]
             profanity_score = response.json()["attributeScores"]["PROFANITY"]["summaryScore"]["value"]
             threat_score = response.json()["attributeScores"]["THREAT"]["summaryScore"]["value"]
-            identity_attack_score = response.json()["attributeScores"]["IDENTITY_ATTACK"]["summaryScore"]["value"]
+            
 
         # Add the toxicity_score to the document data
         category_scores = {
@@ -110,14 +110,14 @@ def analyze_sentiment_and_store():
             "Insult": insult_score,
             "Sexually Explicit": sexually_explicit_score,
             "Profanity": profanity_score,
-            "Identity Attack": identity_attack_score,
+            
         }
 
         # Get the category with the highest score
         highest_category = max(category_scores, key=category_scores.get)
 
         print(highest_category)
-        
+
         # Log the category with the highest score as "CATEGORY" in Firestore
         document_data["CATEGORY"] = highest_category
 
