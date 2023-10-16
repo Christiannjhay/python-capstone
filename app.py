@@ -124,7 +124,7 @@ def analyze_sentiment_and_store():
       
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
-        return jsonify({"message": "Sentiment analysis stored successfully"})
+        return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category})
     
         
     except Exception as e:
