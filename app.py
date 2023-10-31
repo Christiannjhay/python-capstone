@@ -114,8 +114,11 @@ def analyze_sentiment_and_store():
         }
 
         # Get the category with the highest score
+
         highest_category = max(category_scores, key=category_scores.get)
 
+        sentiment = sentiment_label
+        
         print(highest_category)
 
         # Log the category with the highest score as "CATEGORY" in Firestore
