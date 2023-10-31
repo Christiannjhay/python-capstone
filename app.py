@@ -95,7 +95,7 @@ def analyze_sentiment_and_store():
 
         # Check if the request was successful
         if response.status_code == 200:
-
+            toxicity_score = response.json()["attributeScores"]["TOXICITY"]["summaryScore"]["value"]
             severe_toxic_score = response.json()["attributeScores"]["SEVERE_TOXICITY"]["summaryScore"]["value"]
             insult_score = response.json()["attributeScores"]["INSULT"]["summaryScore"]["value"]
             sexually_explicit_score = response.json()["attributeScores"]["SEXUALLY_EXPLICIT"]["summaryScore"]["value"]
@@ -105,6 +105,7 @@ def analyze_sentiment_and_store():
 
         # Add the toxicity_score to the document data
         category_scores = {
+            
             "Severe Toxicity": severe_toxic_score,
             "Threat": threat_score,
             "Insult": insult_score,
@@ -113,7 +114,15 @@ def analyze_sentiment_and_store():
             
         }
 
+        if toxicity_score > 0.5:
+            label = "toxic"
+        else:
+            label = "not toxic"
+
+        
+
         # Get the category with the highest score
+        Toxicity_Identifier = label
 
         highest_category = max(category_scores, key=category_scores.get)
 
@@ -123,6 +132,7 @@ def analyze_sentiment_and_store():
 
         # Log the category with the highest score as "CATEGORY" in Firestore
         document_data["CATEGORY"] = highest_category
+        document_data["IDENTIFIER"] = Toxicity_Identifier
 
       
         # Add the document to Firestore
