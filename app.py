@@ -118,7 +118,7 @@ def analyze_sentiment_and_store():
         highest_category = max(category_scores, key=category_scores.get)
 
         sentiment = sentiment_label
-        
+
         print(highest_category)
 
         # Log the category with the highest score as "CATEGORY" in Firestore
@@ -127,7 +127,7 @@ def analyze_sentiment_and_store():
       
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
-        return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category})
+        return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, "sentiment": sentiment})
     
         
     except Exception as e:
