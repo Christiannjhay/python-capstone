@@ -96,6 +96,7 @@ def analyze_sentiment_and_store():
         # Check if the request was successful
         if response.status_code == 200:
             
+            toxicity_score = response.json()["attributeScores"]["TOXICITY"]["summaryScore"]["value"]
             severe_toxic_score = response.json()["attributeScores"]["SEVERE_TOXICITY"]["summaryScore"]["value"]
             insult_score = response.json()["attributeScores"]["INSULT"]["summaryScore"]["value"]
             sexually_explicit_score = response.json()["attributeScores"]["SEXUALLY_EXPLICIT"]["summaryScore"]["value"]
@@ -117,6 +118,8 @@ def analyze_sentiment_and_store():
 
         # Get the category with the highest score
         
+        underline_decision = toxicity_score
+
 
         highest_category = max(category_scores, key=category_scores.get)
 
@@ -126,12 +129,13 @@ def analyze_sentiment_and_store():
 
         # Log the category with the highest score as "CATEGORY" in Firestore
         document_data["CATEGORY"] = highest_category
+        document_data["TOXCITY_SCORE"] = underline_decision
    
 
       
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
-        return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, "sentiment": sentiment})
+        return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, "underline_decision": underline_decision})
     
         
     except Exception as e:
