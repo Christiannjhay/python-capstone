@@ -30,7 +30,7 @@ PERSPECTIVE_API_URL = "https://commentanalyzer.googleapis.com/v1alpha1/comments:
 
 
 @app.route('/log', methods=['POST'])
-def analyze_sentiment_and_store():
+def analyze_tweet_and_store():
     try:
         # Get text data from Chrome extension's POST request
         data = request.json
@@ -40,7 +40,7 @@ def analyze_sentiment_and_store():
         db = firestore.client()
 
         # Define a collection and document to store the sentiment analysis results
-        collection = db.collection("sentiment")
+        collection = db.collection("tweets")
         document_data = {
             "text": input_text,
            
@@ -113,7 +113,7 @@ def analyze_sentiment_and_store():
 
 
 @app.route('/analyze', methods=['POST'])
-def analyze_sentiment_and_store():
+def analyze_drafts_and_store():
     try:
         # Get text data from Chrome extension's POST request
         data = request.json
@@ -145,7 +145,7 @@ def analyze_sentiment_and_store():
         db = firestore.client()
 
         # Define a collection and document to store the sentiment analysis results
-        collection = db.collection("sentiment")
+        collection = db.collection("drafts")
         document_data = {
             "text": input_text,
             "polarity": polarity,
