@@ -98,12 +98,12 @@ def analyze_tweet_and_store():
 
         print(highest_category)
 
-        current_time = datetime.now();
+        
 
         # Log the category with the highest score as "CATEGORY" in Firestore
         document_data["category"] = highest_category
         document_data["toxicity_score"] = underline_decision,
-        document_data["timestamp"] = current_time
+        
       
    
 
@@ -148,7 +148,7 @@ def analyze_drafts_and_store():
         # Create a Firestore client
         db = firestore.client()
 
-        current_time = datetime.now();
+      
 
         # Define a collection and document to store the sentiment analysis results
         collection = db.collection("drafts")
@@ -158,7 +158,7 @@ def analyze_drafts_and_store():
             "subjectivity": subjectivity,
             "sentiment": sentiment_label,
             "vader_scores": vader_scores,
-            "timestamp": current_time
+           
         }
 
         # Analyze text using Perspective API for toxicity
@@ -220,7 +220,7 @@ def analyze_drafts_and_store():
         # Log the category with the highest score as "CATEGORY" in Firestore
         document_data["CATEGORY"] = highest_category
         document_data["TOXCITY_SCORE"] = underline_decision
-   
+        
 
       
         # Add the document to Firestore
