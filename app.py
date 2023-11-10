@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import requests
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -78,7 +78,8 @@ def analyze_tweet_and_store():
             profanity_score = response.json()["attributeScores"]["PROFANITY"]["summaryScore"]["value"]
             threat_score = response.json()["attributeScores"]["THREAT"]["summaryScore"]["value"]
             
-
+        # Get the current date and time
+        current_time = datetime.now()
         # Add the toxicity_score to the document data
         category_scores = {
 
@@ -87,6 +88,7 @@ def analyze_tweet_and_store():
             "Insult": insult_score,
             "Sexually Explicit": sexually_explicit_score,
             "Profanity": profanity_score,
+            "timestamp": current_time
             
         }
 
@@ -216,10 +218,13 @@ def analyze_drafts_and_store():
         sentiment = sentiment_label
 
         print(highest_category)
-
+         # Get the current date and time
+        current_time = datetime.now()
         # Log the category with the highest score as "CATEGORY" in Firestore
         document_data["CATEGORY"] = highest_category
         document_data["TOXCITY_SCORE"] = underline_decision
+        document_data["timestamp"] = current_time
+
         
 
       
