@@ -1,3 +1,4 @@
+import datetime
 import requests
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -5,7 +6,6 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import textblob
 from flask import Flask, request, jsonify
 import nltk
-from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 import numpy as np
@@ -98,9 +98,13 @@ def analyze_tweet_and_store():
 
         print(highest_category)
 
+        current_time = datetime.now();
+
         # Log the category with the highest score as "CATEGORY" in Firestore
-        document_data["CATEGORY"] = highest_category
-        document_data["TOXCITY_SCORE"] = underline_decision
+        document_data["category"] = highest_category
+        document_data["toxicity_score"] = underline_decision,
+        document_data["timestamp"] = current_time
+      
    
 
         # Add the document to Firestore
@@ -144,6 +148,8 @@ def analyze_drafts_and_store():
         # Create a Firestore client
         db = firestore.client()
 
+        current_time = datetime.now();
+
         # Define a collection and document to store the sentiment analysis results
         collection = db.collection("drafts")
         document_data = {
@@ -151,7 +157,8 @@ def analyze_drafts_and_store():
             "polarity": polarity,
             "subjectivity": subjectivity,
             "sentiment": sentiment_label,
-            "vader_scores": vader_scores
+            "vader_scores": vader_scores,
+            "timestamp": current_time
         }
 
         # Analyze text using Perspective API for toxicity
