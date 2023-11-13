@@ -31,6 +31,13 @@ PERSPECTIVE_API_URL = "https://commentanalyzer.googleapis.com/v1alpha1/comments:
     
 @app.route('/log', methods=['POST'])
 def analyze_tweet_and_store():
+    return analyze_and_store()
+
+@app.route('/report', methods=['POST'])
+def report_and_store():
+    return analyze_and_store()
+
+def analyze_and_store():
     try:
         # Get text data from Chrome extension's POST request
         data = request.json
@@ -43,7 +50,6 @@ def analyze_tweet_and_store():
         collection = db.collection("tweets")
         document_data = {
             "text": input_text,
-           
         }
 
         # Analyze text using Perspective API for toxicity
@@ -62,7 +68,6 @@ def analyze_tweet_and_store():
                 "PROFANITY": {},
                 "LIKELY_TO_REJECT": {},
                 "THREAT": {},
-               
             }
         }
 
@@ -70,53 +75,31 @@ def analyze_tweet_and_store():
 
         # Check if the request was successful
         if response.status_code == 200:
-            
+            # Get the toxicity scores from the response
             toxicity_score = response.json()["attributeScores"]["TOXICITY"]["summaryScore"]["value"]
             severe_toxic_score = response.json()["attributeScores"]["SEVERE_TOXICITY"]["summaryScore"]["value"]
             insult_score = response.json()["attributeScores"]["INSULT"]["summaryScore"]["value"]
             sexually_explicit_score = response.json()["attributeScores"]["SEXUALLY_EXPLICIT"]["summaryScore"]["value"]
             profanity_score = response.json()["attributeScores"]["PROFANITY"]["summaryScore"]["value"]
             threat_score = response.json()["attributeScores"]["THREAT"]["summaryScore"]["value"]
-            
-        
-        # Add the toxicity_score to the document data
-        category_scores = {
 
-            "Severe Toxicity": severe_toxic_score,
-            "Threat": threat_score,
-            "Insult": insult_score,
-            "Sexually Explicit": sexually_explicit_score,
-            "Profanity": profanity_score,
-            
-            
-        }
+            # Add the toxicity scores to the document data
+            document_data.update({
+                "TOXICITY": toxicity_score,
+                "SEVERE_TOXICITY": severe_toxic_score,
+                "INSULT": insult_score,
+                "SEXUALLY_EXPLICIT": sexually_explicit_score,
+                "PROFANITY": profanity_score,
+                "THREAT": threat_score,
+            })
 
+        # Store the document data in Firestore
+        collection.add(document_data)
 
-        # Get the category with the highest score
-        underline_decision = toxicity_score
+        return jsonify({"message": "Success"}), 200
 
-        highest_category = max(category_scores, key=category_scores.get)
-
-        print(highest_category)
-
-        # Get the current date and time
-        current_time = datetime.now()
-
-        # Log the category with the highest score as "CATEGORY" in Firestore
-        document_data["category"] = highest_category
-        document_data["TOXCITY_SCORE"] = underline_decision
-        document_data["timestamp"] = current_time
-       
-      
-   
-
-        # Add the document to Firestore
-        doc_ref = collection.add(document_data)
-        return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, "underline_decision": underline_decision})
-    
-        
     except Exception as e:
-        return jsonify({"error": str(e)})
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route('/analyze', methods=['POST'])
@@ -239,6 +222,5 @@ def analyze_drafts_and_store():
     
 
     
-
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
