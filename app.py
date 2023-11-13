@@ -104,7 +104,7 @@ def analyze_tweet_and_store():
 
         # Log the category with the highest score as "CATEGORY" in Firestore
         document_data["category"] = highest_category
-        document_data["toxicity_score"] = underline_decision,
+        document_data["TOXCITY_SCORE"] = underline_decision
         document_data["timestamp"] = current_time
        
       
@@ -122,7 +122,7 @@ def analyze_tweet_and_store():
 @app.route('/analyze', methods=['POST'])
 def analyze_drafts_and_store():
     try:
-        # Get text data from Chrome extension's POST request
+        # Get text data from Chrome extension's POST reque  st
         data = request.json
         input_text = data.get('text', '')
 
