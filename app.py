@@ -310,7 +310,7 @@ def analyze_drafts_and_store():
 
         highest_category = max(category_scores, key=category_scores.get)
 
-        
+        print(double_negation_result)
 
         print(highest_category)
          # Get the current date and time
