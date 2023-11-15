@@ -20,6 +20,7 @@ nlp = spacy.load("en_core_web_sm")
 
 print("Current working directory:", os.getcwd())
 
+
 # Initialize Firebase Admin SDK
 cred = credentials.Certificate("firebase_credentials.json")
 firebase_admin.initialize_app(cred)
