@@ -3,7 +3,6 @@ import requests
 import firebase_admin
 from firebase_admin import credentials, firestore
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-import textblob
 from flask import Flask, request, jsonify
 import nltk
 from flask_cors import CORS
@@ -21,6 +20,7 @@ nlp = spacy.load("en_core_web_sm")
 
 print("Current working directory:", os.getcwd())
 
+
 # Initialize Firebase Admin SDK
 cred = credentials.Certificate("firebase_credentials.json")
 firebase_admin.initialize_app(cred)
@@ -32,24 +32,27 @@ PERSPECTIVE_API_URL = "https://commentanalyzer.googleapis.com/v1alpha1/comments:
 PERSPECTIVE_API_URL = "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze"
 
 
-
-
-def detect_double_negation(text):
-    doc = nlp(text)
-    negative_prefixes = ["un", "in", "im", "ir", "non"]
-    negative_verbs = ["disagree", "reject", "refuse", "deny", "fail"]
-    negations = [token for token in doc if token.dep_ == 'neg' or 
-                 any(token.text.startswith(prefix) for prefix in negative_prefixes) or 
-                 any(token.lemma_ == verb for verb in negative_verbs)]
-    print(f"Negations in '{text}': {negations}")
-    return len(negations) >= 2
-    
 @app.route('/report', methods=['POST'])
 def report_and_store():
     try:
         # Get text data from Chrome extension's POST request
         data = request.json
         input_text = data.get('text', '')
+
+        double_negatives = {
+        "not bad": "good",
+        "not uninteresting": "interesting",
+        
+        }
+
+        def handle_double_negatives(text):
+            for dn, pos in double_negatives.items():
+                text = text.replace(dn, pos)
+            return text
+
+        # Then, in your route handlers, preprocess the input_text:
+        input_text = handle_double_negatives(input_text)
+    
 
         # Create a Firestore client
         db = firestore.client()
@@ -127,7 +130,8 @@ def report_and_store():
 
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
-        return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, "underline_decision": underline_decision})
+        return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, 
+                        "underline_decision": underline_decision})
     
         
     except Exception as e:
@@ -139,6 +143,10 @@ def analyze_tweet_and_store():
         # Get text data from Chrome extension's POST request
         data = request.json
         input_text = data.get('text', '')
+
+
+
+    
 
         # Create a Firestore client
         db = firestore.client()
@@ -216,11 +224,15 @@ def analyze_tweet_and_store():
 
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
-        return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, "underline_decision": underline_decision})
+        return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, "underline_decision": underline_decision,
+                        })
     
         
     except Exception as e:
         return jsonify({"error": str(e)})
+
+
+
 
 
 @app.route('/analyze', methods=['POST'])
@@ -230,42 +242,17 @@ def analyze_drafts_and_store():
         data = request.json
         input_text = data.get('text', '')
 
-        # Analyze sentiment using VADER sentiment analysis
-        vader_analyzer = SentimentIntensityAnalyzer()
-        vader_scores = vader_analyzer.polarity_scores(input_text)
+        
 
-        # Create a TextBlob object with the input text
-        blob = textblob.TextBlob(input_text)
-
-        # Perform sentiment analysis using TextBlob
-        sentiment = blob.sentiment
-
-        # Get the polarity (positive/negative) and subjectivity (objective/subjective) scores
-        polarity = sentiment.polarity
-        subjectivity = sentiment.subjectivity
-
-        # Determine sentiment labels based on polarity
-        if polarity > 0:
-            sentiment_label = "positive"
-        elif polarity < 0:
-            sentiment_label = "negative"
-        else:
-            sentiment_label = "neutral"
-
+    
         # Create a Firestore client
         db = firestore.client()
 
-      
-
+    
         # Define a collection and document to store the sentiment analysis results
         collection = db.collection("drafts")
         document_data = {
             "text": input_text,
-            "polarity": polarity,
-            "subjectivity": subjectivity,
-            "sentiment": sentiment_label,
-            "vader_scores": vader_scores,
-           
         }
 
         # Analyze text using Perspective API for toxicity
@@ -320,7 +307,7 @@ def analyze_drafts_and_store():
 
         highest_category = max(category_scores, key=category_scores.get)
 
-        sentiment = sentiment_label
+        
 
         print(highest_category)
          # Get the current date and time
@@ -335,7 +322,8 @@ def analyze_drafts_and_store():
       
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
-        return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, "underline_decision": underline_decision})
+        return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, "underline_decision": underline_decision,
+                       })
     
         
     except Exception as e:
