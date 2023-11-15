@@ -3,12 +3,13 @@ import requests
 import firebase_admin
 from firebase_admin import credentials, firestore
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-import spacy
 from flask import Flask, request, jsonify
 import nltk
 from flask_cors import CORS
 import os
 import numpy as np
+import spacy
+
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -30,15 +31,6 @@ PERSPECTIVE_API_URL = "https://commentanalyzer.googleapis.com/v1alpha1/comments:
 # Define Perspective API endpoint
 PERSPECTIVE_API_URL = "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze"
 
-def detect_double_negation(text):
-    doc = nlp(text)
-    negative_prefixes = ["un", "in", "im", "ir", "non"]
-    negative_verbs = ["disagree", "reject", "refuse", "deny", "fail"]
-    negations = [token for token in doc if token.dep_ == 'neg' or 
-                 any(token.text.startswith(prefix) for prefix in negative_prefixes) or 
-                 any(token.lemma_ == verb for verb in negative_verbs)]
-    print(f"Negations in '{text}': {negations}")
-    return len(negations) >= 2
 
 @app.route('/report', methods=['POST'])
 def report_and_store():
@@ -47,9 +39,7 @@ def report_and_store():
         data = request.json
         input_text = data.get('text', '')
 
-        double_negation_result = detect_double_negation(input_text)
-        print("Input Text:", input_text)
-        print("Double Negation Result:", double_negation_result)
+    
 
         # Create a Firestore client
         db = firestore.client()
@@ -128,7 +118,7 @@ def report_and_store():
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
         return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, 
-                        "double_negation_result":double_negation_result,"underline_decision": underline_decision})
+                        "underline_decision": underline_decision})
     
         
     except Exception as e:
@@ -142,10 +132,7 @@ def analyze_tweet_and_store():
         input_text = data.get('text', '')
 
 
-         # Detect double negation for the single input
-        double_negation_result = detect_double_negation(input_text)
-        print("Input Text:", input_text)
-        print("Double Negation Result:", double_negation_result)
+
     
 
         # Create a Firestore client
@@ -225,7 +212,7 @@ def analyze_tweet_and_store():
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
         return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, "underline_decision": underline_decision,
-                        "double_negation_result":double_negation_result})
+                        })
     
         
     except Exception as e:
@@ -243,10 +230,7 @@ def analyze_drafts_and_store():
         input_text = data.get('text', '')
 
         
-       # Detect double negation for the single input
-        double_negation_result = detect_double_negation(input_text)
-        print("Input Text:", input_text)
-        print("Double Negation Result:", double_negation_result)
+
     
         # Create a Firestore client
         db = firestore.client()
@@ -326,7 +310,7 @@ def analyze_drafts_and_store():
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
         return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, "underline_decision": underline_decision,
-                        "double_negation_result":double_negation_result})
+                       })
     
         
     except Exception as e:
