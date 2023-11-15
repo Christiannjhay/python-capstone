@@ -9,12 +9,15 @@ import nltk
 from flask_cors import CORS
 import os
 import numpy as np
+import spacy
+
 
 # Initialize Flask app
 app = Flask(__name__)
 CORS(app)  # Enable CORS for your Flask app
 
 nltk.download('vader_lexicon')
+nlp = spacy.load("en_core_web_sm")
 
 print("Current working directory:", os.getcwd())
 
@@ -29,6 +32,18 @@ PERSPECTIVE_API_URL = "https://commentanalyzer.googleapis.com/v1alpha1/comments:
 PERSPECTIVE_API_URL = "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze"
 
 
+
+
+def detect_double_negation(text):
+    doc = nlp(text)
+    negative_prefixes = ["un", "in", "im", "ir", "non"]
+    negative_verbs = ["disagree", "reject", "refuse", "deny", "fail"]
+    negations = [token for token in doc if token.dep_ == 'neg' or 
+                 any(token.text.startswith(prefix) for prefix in negative_prefixes) or 
+                 any(token.lemma_ == verb for verb in negative_verbs)]
+    print(f"Negations in '{text}': {negations}")
+    return len(negations) >= 2
+    
 @app.route('/report', methods=['POST'])
 def report_and_store():
     try:
