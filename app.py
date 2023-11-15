@@ -8,7 +8,7 @@ import nltk
 from flask_cors import CORS
 import os
 import numpy as np
-
+import spacy
 # Initialize Flask app
 app = Flask(__name__)
 CORS(app)  # Enable CORS for your Flask app
