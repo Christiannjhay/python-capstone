@@ -10,7 +10,7 @@ from flask_cors import CORS
 import os
 import numpy as np
 import spacy
-import spacy
+
 
 # Initialize Flask app
 app = Flask(__name__)
