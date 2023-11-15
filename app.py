@@ -4,7 +4,6 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import spacy
-import textblob
 from flask import Flask, request, jsonify
 import nltk
 from flask_cors import CORS
