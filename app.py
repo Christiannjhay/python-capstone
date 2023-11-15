@@ -16,7 +16,7 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for your Flask app
 
 nltk.download('vader_lexicon')
-nlp = spacy.load("en_core_web_sm")
+
 
 print("Current working directory:", os.getcwd())
 
