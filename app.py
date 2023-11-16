@@ -4,7 +4,8 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import spacy
-import textblob
+from textblob import TextBlob
+from explicit_terms import explicit_medical_terms
 from flask import Flask, request, jsonify
 import nltk
 from flask_cors import CORS
@@ -18,7 +19,7 @@ CORS(app)  # Enable CORS for your Flask app
 nltk.download('vader_lexicon')
 nlp = spacy.load("en_core_web_sm")
 
-print("Current working directory:", os.getcwd())
+
 
 # Initialize Firebase Admin SDK
 cred = credentials.Certificate("firebase_credentials.json")
@@ -40,12 +41,35 @@ def detect_double_negation(text):
     print(f"Negations in '{text}': {negations}")
     return len(negations) >= 2
 
+def analyze_sentiment(text):
+    blob = TextBlob(text)
+    sentiment = blob.sentiment.polarity
+    if sentiment > 0:
+        return "Positive"
+    elif sentiment < 0:
+        return "Negative"
+    else:
+        return "Neutral"
+
+def match_and_analyze(text):
+    matched_terms = [term for term, definition in explicit_medical_terms.items() if term in text.lower()]
+    sentiment_label = analyze_sentiment(text)
+    return matched_terms, sentiment_label
+
 @app.route('/report', methods=['POST'])
 def report_and_store():
     try:
         # Get text data from Chrome extension's POST request
         data = request.json
         input_text = data.get('text', '')
+
+         # Match Medical terms
+        sample_text = input_text
+        matched_terms, sentiment_label = match_and_analyze(sample_text)
+        if bool(matched_terms) and sentiment_label in ['Positive', 'Neutral']:
+            medical_term = True
+        else: 
+            medical_term = False
 
         double_negation_result = detect_double_negation(input_text)
         print("Input Text:", input_text)
@@ -128,7 +152,8 @@ def report_and_store():
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
         return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, 
-                        "double_negation_result":double_negation_result,"underline_decision": underline_decision})
+                        "double_negation_result":double_negation_result,"underline_decision": underline_decision,
+                        "medical_term": medical_term})
     
         
     except Exception as e:
@@ -141,6 +166,13 @@ def analyze_tweet_and_store():
         data = request.json
         input_text = data.get('text', '')
 
+        # Match Medical terms
+        sample_text = input_text
+        matched_terms, sentiment_label = match_and_analyze(sample_text)
+        if bool(matched_terms) and sentiment_label in ['Positive', 'Neutral']:
+            medical_term = True
+        else: 
+            medical_term = False
 
          # Detect double negation for the single input
         double_negation_result = detect_double_negation(input_text)
@@ -225,7 +257,7 @@ def analyze_tweet_and_store():
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
         return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, "underline_decision": underline_decision,
-                        "double_negation_result":double_negation_result})
+                        "double_negation_result":double_negation_result, "medical_term": medical_term})
     
         
     except Exception as e:
@@ -242,12 +274,19 @@ def analyze_drafts_and_store():
         data = request.json
         input_text = data.get('text', '')
 
+         # Match Medical terms
+        sample_text = input_text
+        matched_terms, sentiment_label = match_and_analyze(sample_text)
+        if bool(matched_terms) and sentiment_label in ['Positive', 'Neutral']:
+            medical_term = True
+        else: 
+            medical_term = False
         
        # Detect double negation for the single input
         double_negation_result = detect_double_negation(input_text)
         print("Input Text:", input_text)
         print("Double Negation Result:", double_negation_result)
-    
+
         # Create a Firestore client
         db = firestore.client()
 
@@ -326,7 +365,7 @@ def analyze_drafts_and_store():
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
         return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, "underline_decision": underline_decision,
-                        "double_negation_result":double_negation_result})
+                        "double_negation_result":double_negation_result, "medical_term": medical_term})
     
         
     except Exception as e:

@@ -1,7 +1,10 @@
 import json
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
-# Your JSON data
-json_data = '''
+# Load the JSON data
+json_data = """
 {
     "results": [
         {
@@ -591,12 +594,44 @@ json_data = '''
         }
     ]
 }
-'''
-
-# Load the JSON data
+"""
 data = json.loads(json_data)
 
 # Count the number of entries with "double_negation_result" set to True
 true_count = sum(1 for entry in data["results"] if entry.get("double_negation_result", False))
-
 print("Number of true:", true_count)
+
+# Create a DataFrame from the results
+df = pd.DataFrame(data["results"])
+
+# Boxplot
+sns.boxplot(x="highest_category", y="underline_decision", data=df)
+plt.title("Boxplot of underline_decision across highest_category")
+plt.show()
+
+# Summary statistics for "underline_decision"
+summary_stats = df["underline_decision"].describe()
+print("\nSummary Statistics for underline_decision:\n", summary_stats)
+
+# Correlation Analysis
+correlation_matrix = df.corr()
+print("\nCorrelation Matrix:\n", correlation_matrix)
+
+# Visualization: Correlation Heatmap
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", fmt=".2f")
+plt.title("Correlation Heatmap")
+plt.show()
+
+# Correlation Analysis between "underline_decision" and length of "message"
+df["message_length"] = df["message"].apply(len)
+correlation_message_length = df[["underline_decision", "message_length"]].corr().iloc[0, 1]
+print("\nCorrelation between underline_decision and message_length:", correlation_message_length)
+
+# Visualization: Scatter plot of "underline_decision" and length of "message"
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x="message_length", y="underline_decision", data=df)
+plt.title("Scatter plot of underline_decision and message_length")
+plt.xlabel("Message Length")
+plt.ylabel("underline_decision")
+plt.show()
