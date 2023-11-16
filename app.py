@@ -265,8 +265,6 @@ def analyze_tweet_and_store():
 
 
 
-
-
 @app.route('/analyze', methods=['POST'])
 def analyze_drafts_and_store():
     try:
@@ -290,7 +288,6 @@ def analyze_drafts_and_store():
         # Create a Firestore client
         db = firestore.client()
 
-    
         # Define a collection and document to store the sentiment analysis results
         collection = db.collection("drafts")
         document_data = {
