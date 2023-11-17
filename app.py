@@ -73,6 +73,9 @@ def report_and_store():
             medical_term = False
 
         double_negation_result = detect_double_negation(input_text)
+
+
+
         print("Input Text:", input_text)
         print("Double Negation Result:", double_negation_result)
 
@@ -141,6 +144,11 @@ def report_and_store():
 
         # Get the current date and time
         current_time = datetime.now()
+
+        if(medical_term):
+            underline_decision = 0.0
+        if(double_negation_result):
+            underline_decision =  0.0
 
         # Log the category with the highest score as "CATEGORY" in Firestore
         document_data["category"] = highest_category
@@ -244,6 +252,11 @@ def analyze_tweet_and_store():
 
         # Get the current date and time
         current_time = datetime.now()
+
+        if(medical_term):
+            underline_decision = 0.0
+        if(double_negation_result):
+            underline_decision =  0.0
 
         # Log the category with the highest score as "CATEGORY" in Firestore
         document_data["category"] = highest_category
@@ -350,6 +363,11 @@ def analyze_drafts_and_store():
         print(highest_category)
          # Get the current date and time
         current_time = datetime.now()
+
+        if(medical_term):
+            underline_decision = 0.0
+        if(double_negation_result):
+            underline_decision =  0.0
         # Log the category with the highest score as "CATEGORY" in Firestore
         document_data["CATEGORY"] = highest_category
         document_data["TOXCITY_SCORE"] = underline_decision
