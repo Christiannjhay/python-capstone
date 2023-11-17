@@ -146,12 +146,7 @@ def report_and_store():
         document_data["category"] = highest_category
         document_data["TOXCITY_SCORE"] = underline_decision
         document_data["timestamp"] = current_time
-
-        if(medical_term):
-            underline_decision = 0.0
-        if(double_negation_result):
-            underline_decision = 0.0
-            
+ 
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
         return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, 
@@ -252,10 +247,7 @@ def analyze_tweet_and_store():
         document_data["TOXCITY_SCORE"] = underline_decision
         document_data["timestamp"] = current_time
        
-        if(medical_term):
-            underline_decision = 0.0
-        if(double_negation_result):
-            underline_decision = 0.0
+       
    
 
         # Add the document to Firestore
@@ -360,12 +352,6 @@ def analyze_drafts_and_store():
         document_data["TOXCITY_SCORE"] = underline_decision
         document_data["timestamp"] = current_time
 
-        
-        if(medical_term):
-            underline_decision = 0.0
-        if(double_negation_result):
-            underline_decision = 0.0
-        
       
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
