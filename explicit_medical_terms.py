@@ -1,7 +1,7 @@
 
 # Define a dictionary of explicit terms and their medical counterparts
 explicit_medical_terms = {
-      "penis": "",
+    "penis": "",
     "vagina": "",
     "breast": "",
     "testicles": "",

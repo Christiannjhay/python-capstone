@@ -146,7 +146,9 @@ def report_and_store():
         document_data["category"] = highest_category
         document_data["TOXCITY_SCORE"] = underline_decision
         document_data["timestamp"] = current_time
- 
+
+        
+        
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
         return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, 
