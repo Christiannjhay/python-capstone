@@ -20,7 +20,6 @@ nltk.download('vader_lexicon')
 nlp = spacy.load("en_core_web_sm")
 
 
-
 # Initialize Firebase Admin SDK
 cred = credentials.Certificate("firebase_credentials.json")
 firebase_admin.initialize_app(cred)
@@ -35,9 +34,11 @@ def detect_double_negation(text):
     doc = nlp(text)
     negative_prefixes = ["un", "in", "im", "ir", "non"]
     negative_verbs = ["disagree", "reject", "refuse", "deny", "fail"]
+    
     negations = [token for token in doc if token.dep_ == 'neg' or 
-                 any(token.text.startswith(prefix) for prefix in negative_prefixes) or 
-                 any(token.lemma_ == verb for verb in negative_verbs)]
+                 (token.text.lower() in negative_prefixes and token.text.lower() != "a") or
+                 any(token.lemma_.lower() == verb for verb in negative_verbs)]
+    
     print(f"Negations in '{text}': {negations}")
     return len(negations) >= 2
 
@@ -145,17 +146,18 @@ def report_and_store():
         document_data["category"] = highest_category
         document_data["TOXCITY_SCORE"] = underline_decision
         document_data["timestamp"] = current_time
-       
-      
-   
 
+        if(medical_term):
+            underline_decision = 0.0
+        if(double_negation_result):
+            underline_decision = 0.0
+            
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
         return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, 
                         "double_negation_result":double_negation_result,"underline_decision": underline_decision,
-                        "medical_term": medical_term})
-    
-        
+                        "medical_term": medical_term, "sentiment_label": sentiment_label})
+          
     except Exception as e:
         return jsonify({"error": str(e)})
     
@@ -179,7 +181,6 @@ def analyze_tweet_and_store():
         print("Input Text:", input_text)
         print("Double Negation Result:", double_negation_result)
     
-
         # Create a Firestore client
         db = firestore.client()
 
@@ -251,7 +252,10 @@ def analyze_tweet_and_store():
         document_data["TOXCITY_SCORE"] = underline_decision
         document_data["timestamp"] = current_time
        
-      
+        if(medical_term):
+            underline_decision = 0.0
+        if(double_negation_result):
+            underline_decision = 0.0
    
 
         # Add the document to Firestore
@@ -357,18 +361,24 @@ def analyze_drafts_and_store():
         document_data["timestamp"] = current_time
 
         
-
+        if(medical_term):
+            underline_decision = 0.0
+        if(double_negation_result):
+            underline_decision = 0.0
+        
       
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
         return jsonify({"message": "Sentiment analysis stored successfully", "highest_category": highest_category, "underline_decision": underline_decision,
-                        "double_negation_result":double_negation_result, "medical_term": medical_term})
+                        "double_negation_result":double_negation_result, "medical_term": medical_term,
+                        "sentiment_label": sentiment_label})
     
         
     except Exception as e:
         return jsonify({"error": str(e)})
-    
 
+
+    
     
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
