@@ -5,7 +5,7 @@ from firebase_admin import credentials, firestore
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import spacy
 from textblob import TextBlob
-from explicit_terms import explicit_medical_terms
+from explicit_medical_terms import explicit_medical_terms
 from flask import Flask, request, jsonify
 import nltk
 from flask_cors import CORS
@@ -146,8 +146,9 @@ def report_and_store():
         document_data["category"] = highest_category
         document_data["TOXCITY_SCORE"] = underline_decision
         document_data["timestamp"] = current_time
-
         
+        print('medical terms under')
+        print(medical_term)
         
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
