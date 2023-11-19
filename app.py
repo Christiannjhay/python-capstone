@@ -6,6 +6,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import spacy
 from textblob import TextBlob
 from explicit_medical_terms import explicit_medical_terms
+from filipino_explicit_terms import filipino_explicit_terms
 from flask import Flask, request, jsonify
 import nltk
 from flask_cors import CORS
@@ -56,6 +57,12 @@ def match_and_analyze(text):
     matched_terms = [term for term, definition in explicit_medical_terms.items() if term in text.lower()]
     sentiment_label = analyze_sentiment(text)
     return matched_terms, sentiment_label
+
+def filipino_terms(text):
+    matched_terms = [term for term, definition in filipino_explicit_terms.items() if term in text.lower()]
+    return matched_terms
+
+
 
 @app.route('/report', methods=['POST'])
 def report_and_store():
@@ -133,7 +140,6 @@ def report_and_store():
             
             
         }
-
 
         # Get the category with the highest score
         underline_decision = toxicity_score

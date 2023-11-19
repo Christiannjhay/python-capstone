@@ -3,6 +3,7 @@ import requests
 import firebase_admin
 from firebase_admin import credentials, firestore
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from explicit_medical_terms import explicit_medical_terms
 import spacy
 import textblob
 from flask import Flask, request, jsonify
@@ -37,11 +38,34 @@ def detect_double_negation(text):
     print(f"Negations in '{text}': {negations}")
     return len(negations) >= 2
 
+def analyze_sentiment(text):
+    blob = textblob.TextBlob(text)
+    sentiment = blob.sentiment.polarity
+    if sentiment > 0:
+        return "Positive"
+    elif sentiment < 0:
+        return "Negative"
+    else:
+        return "Neutral"
+
+def match_and_analyze(text):
+    matched_terms = [term for term, definition in explicit_medical_terms.items() if term in text.lower()]
+    sentiment_label = analyze_sentiment(text)
+    return matched_terms, sentiment_label
+
 def analyze_text(input_text):
     try:
         double_negation_result = detect_double_negation(input_text)
         print("Input Text:", input_text)
         print("Double Negation Result:", double_negation_result)
+
+          # Match Medical terms
+        sample_text = input_text
+        matched_terms, sentiment_label = match_and_analyze(sample_text)
+        if bool(matched_terms) and sentiment_label in ['Positive', 'Neutral']:
+            medical_term = True
+        else: 
+            medical_term = False
 
         # Create a Firestore client
         db = firestore.client()
@@ -108,7 +132,8 @@ def analyze_text(input_text):
         # Add the document to Firestore
         doc_ref = collection.add(document_data)
         return {"message": "Sentiment analysis stored successfully", "highest_category": highest_category, 
-                "double_negation_result": double_negation_result, "underline_decision": underline_decision}
+                "double_negation_result": double_negation_result, 
+                "medical_term": medical_term, "underline_decision": underline_decision}
     
     except Exception as e:
         return {"error": str(e)}
