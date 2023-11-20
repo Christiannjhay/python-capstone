@@ -6,687 +6,705 @@ json_data = '''
     "results": [
         {
             "double_negation_result": false,
-            "highest_category": "Threat",
+            "highest_category": "Sexually Explicit",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.54823303
+            "underline_decision": 0.8115627
         },
         {
-            "double_negation_result": true,
-            "highest_category": "Profanity",
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.03592727
+            "underline_decision": 0.25084448
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.85333383
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Profanity",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.06065326
         },
         {
             "double_negation_result": false,
             "highest_category": "Threat",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.5885171
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.568186
+        },
+        {
+            "double_negation_result": true,
+            "highest_category": "Threat",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.23090743
+        },
+        {
+            "double_negation_result": true,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.07054565
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.32971194
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Profanity",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.78207105
+        },
+        {
+            "error": "cannot access local variable 'severe_toxic_score' where it is not associated with a value"
+        },
+        {
+            "double_negation_result": true,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.47173777
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
             "underline_decision": 0.47119883
         },
         {
             "double_negation_result": false,
-            "highest_category": "Threat",
+            "highest_category": "Insult",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.5721988
+            "underline_decision": 0.6027529
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.42129645
+        },
+        {
+            "error": "cannot access local variable 'severe_toxic_score' where it is not associated with a value"
         },
         {
             "double_negation_result": false,
             "highest_category": "Profanity",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.83334327
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.25462922
+        },
+        {
+            "double_negation_result": true,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.5140397
+        },
+        {
+            "double_negation_result": true,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.30464804
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.6027529
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.24603334
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Profanity",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.90451443
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.85333383
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.25462922
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.5885171
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.743089
+        },
+        {
+            "double_negation_result": true,
+            "highest_category": "Insult",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
             "underline_decision": 0.47886392
         },
         {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.72028047
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Profanity",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.9749944
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.3722269
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.64447093
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.3666224
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.3811502
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.35186127
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.16043124
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Profanity",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.85333383
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.8629672
+        },
+        {
+            "double_negation_result": true,
+            "highest_category": "Profanity",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.8540474
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.22712809
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Sexually Explicit",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.112850055
+        },
+        {
             "double_negation_result": true,
             "highest_category": "Threat",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.112540044
+            "underline_decision": 0.46982017
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.18744208
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.76197964
+        },
+        {
+            "double_negation_result": true,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.20973456
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.36095104
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.42568782
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.62136006
+        },
+        {
+            "double_negation_result": true,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.45921504
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.34328604
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.32971194
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Profanity",
+            "medical_term": true,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.04686289
+        },
+        {
+            "double_negation_result": true,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.13041082
         },
         {
             "double_negation_result": false,
             "highest_category": "Threat",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.19124292
+            "underline_decision": 0.5024724
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.15545623
+        },
+        {
+            "double_negation_result": true,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.8540474
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Profanity",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.6308517
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.09828771
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.05824285
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.20839658
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.4402136
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Profanity",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.9061063
         },
         {
             "double_negation_result": false,
             "highest_category": "Threat",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.056016337
+            "underline_decision": 0.24282593
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Sexually Explicit",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.8460273
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Threat",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.44039994
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Threat",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.24763705
         },
         {
             "double_negation_result": false,
             "highest_category": "Insult",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.19314334
+            "underline_decision": 0.47323486
         },
         {
             "double_negation_result": false,
             "highest_category": "Insult",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.06579731
+            "underline_decision": 0.7570315
         },
         {
-            "double_negation_result": true,
-            "highest_category": "Insult",
+            "double_negation_result": false,
+            "highest_category": "Sexually Explicit",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.17718399
+            "underline_decision": 0.26293078
         },
         {
             "double_negation_result": false,
             "highest_category": "Insult",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.6588125
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.4398409
+            "underline_decision": 0.059232414
         },
         {
             "double_negation_result": false,
             "highest_category": "Profanity",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.059479803
+            "underline_decision": 0.032391842
         },
         {
             "double_negation_result": false,
             "highest_category": "Insult",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.39842087
+            "underline_decision": 0.36095104
         },
         {
             "double_negation_result": false,
             "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.33255672
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Profanity",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.025556687
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.08479069
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.2648175
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.39441586
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.51980776
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.19893374
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.075294
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
             "underline_decision": 0.46716887
         },
         {
             "double_negation_result": false,
-            "highest_category": "Insult",
+            "highest_category": "Threat",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
+            "underline_decision": 0.31547862
         },
         {
             "double_negation_result": false,
             "highest_category": "Profanity",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.046368107
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.3281604
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.27236435
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Threat",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.56269526
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.2820025
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Threat",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.6426206
+        },
+        {
+            "double_negation_result": true,
+            "highest_category": "Insult",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.28087774
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Profanity",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.8629672
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Profanity",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
             "underline_decision": 0.025556687
         },
         {
             "double_negation_result": false,
             "highest_category": "Insult",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.08479069
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
+            "underline_decision": 0.37576625
         },
         {
             "double_negation_result": true,
-            "highest_category": "Insult",
+            "highest_category": "Threat",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.2648175
+            "underline_decision": 0.6989911
         },
         {
             "double_negation_result": false,
-            "highest_category": "Insult",
+            "highest_category": "Sexually Explicit",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.39441586
+            "underline_decision": 0.7856813
         },
         {
             "double_negation_result": false,
-            "highest_category": "Insult",
+            "highest_category": "Sexually Explicit",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.51980776
+            "underline_decision": 0.28425202
         },
         {
             "double_negation_result": false,
-            "highest_category": "Insult",
+            "highest_category": "Threat",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.19893374
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.075294
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46716887
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Profanity",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.025556687
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.08479069
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.2648175
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.39441586
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.51980776
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.19893374
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.075294
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46716887
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Profanity",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.025556687
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.08479069
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.2648175
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.39441586
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.51980776
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.19893374
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.075294
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46716887
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Profanity",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.025556687
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.08479069
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.2648175
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.39441586
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.51980776
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.19893374
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.075294
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46716887
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Profanity",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.025556687
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.08479069
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.2648175
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.39441586
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.51980776
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.19893374
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.075294
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46716887
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Profanity",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.025556687
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.08479069
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.2648175
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.39441586
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.51980776
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.19893374
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.075294
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46716887
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Profanity",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.025556687
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.08479069
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.2648175
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.39441586
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.51980776
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.19893374
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.075294
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46716887
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Profanity",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.025556687
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.08479069
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.2648175
-        },
-        {
-            "double_negation_result": false,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.39441586
+            "underline_decision": 0.17631748
         },
         {
             "error": "cannot access local variable 'severe_toxic_score' where it is not associated with a value"
         },
         {
             "double_negation_result": false,
-            "highest_category": "Insult",
+            "highest_category": "Threat",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.19893374
+            "underline_decision": 0.6852916
         },
         {
-            "error": "cannot access local variable 'severe_toxic_score' where it is not associated with a value"
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
+            "double_negation_result": false,
+            "highest_category": "Threat",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46716887
+            "underline_decision": 0.37751234
         },
         {
             "double_negation_result": false,
             "highest_category": "Insult",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
+            "underline_decision": 0.57271194
         },
         {
             "double_negation_result": false,
             "highest_category": "Profanity",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.025556687
+            "underline_decision": 0.7856813
         },
         {
             "double_negation_result": false,
             "highest_category": "Insult",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.08479069
+            "underline_decision": 0.52007306
         },
         {
             "double_negation_result": false,
             "highest_category": "Insult",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46186632
-        },
-        {
-            "double_negation_result": true,
-            "highest_category": "Insult",
-            "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.2648175
+            "underline_decision": 0.34328604
         },
         {
             "double_negation_result": false,
-            "highest_category": "Insult",
+            "highest_category": "Threat",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.39441586
+            "underline_decision": 0.41168427
         },
         {
             "double_negation_result": false,
-            "highest_category": "Insult",
+            "highest_category": "Threat",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.51980776
+            "underline_decision": 0.3286776
         },
         {
             "double_negation_result": false,
-            "highest_category": "Insult",
+            "highest_category": "Profanity",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.19893374
+            "underline_decision": 0.2763787
         },
         {
-            "double_negation_result": true,
-            "highest_category": "Insult",
+            "double_negation_result": false,
+            "highest_category": "Profanity",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.075294
+            "underline_decision": 0.687436
         },
         {
-            "double_negation_result": true,
-            "highest_category": "Insult",
+            "double_negation_result": false,
+            "highest_category": "Profanity",
+            "medical_term": false,
             "message": "Sentiment analysis stored successfully",
-            "underline_decision": 0.46716887
+            "underline_decision": 0.89241093
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Threat",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.7701451
+        },
+        {
+            "double_negation_result": false,
+            "highest_category": "Profanity",
+            "medical_term": false,
+            "message": "Sentiment analysis stored successfully",
+            "underline_decision": 0.89241093
         }
     ]
 }
