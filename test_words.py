@@ -138,6 +138,7 @@ def analyze_text(input_text):
     except Exception as e:
         return {"error": str(e)}
 
+# Endpoint to report and store text
 @app.route('/report', methods=['POST'])
 def report_and_store():
     try:
@@ -145,19 +146,35 @@ def report_and_store():
         data = request.json
         input_text = data.get('text', '')
 
+        # Measure the time before calling analyze_text
+        start_time = datetime.now()
+
         # If the input_text is a list, analyze each text individually
         if isinstance(input_text, list):
             results = []
             for text in input_text:
                 result = analyze_text(text)
                 results.append(result)
-            return jsonify({"results": results})
         else:
-            result = analyze_text(input_text)
-            return jsonify(result)
+            results = analyze_text(input_text)
+
+        # Measure the time after calling analyze_text
+        end_time = datetime.now()
+        response_time = (end_time - start_time).total_seconds() * 1000  # Convert to milliseconds
+
+        # Include the response time in the results
+        if isinstance(results, list):
+            for result in results:
+                result["response_time"] = response_time
+        else:
+            results["response_time"] = response_time
+
+        return jsonify({"results": results})
     
     except Exception as e:
         return jsonify({"error": str(e)})
+
+    
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
