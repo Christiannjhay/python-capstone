@@ -4,5 +4,4 @@ filipino_explicit_terms = {
     "penis": "",
     "vagina": "",
     "breast": ""
- 
 }
